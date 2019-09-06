@@ -46,7 +46,7 @@ public class FlappyBird extends ApplicationAdapter {
         alturaDevice = Gdx.graphics.getHeight();
         positionStartVertical = alturaDevice / 2;
         positionMovePipeHorizontal = larguraDevice;
-        spaceEntrePipe = 500;
+        spaceEntrePipe = 450;
 
 
     }
