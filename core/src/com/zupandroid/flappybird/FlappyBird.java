@@ -28,7 +28,7 @@ public class FlappyBird extends ApplicationAdapter {
     private float spaceEntrePipe;
     private float deltaTime;
     private float alturaEntrePipe;
-
+//...
     public void create() {
 
         batch = new SpriteBatch();
