@@ -20,6 +20,7 @@ public class FlappyBird extends ApplicationAdapter {
     // Atributos de configuração
     private int larguraDevice;
     private int alturaDevice;
+    private int statsGame = 0; // 0 = Jogo não iniciado
 
     private float verify = 0;
     private float veloityDown = 0;
@@ -28,7 +29,8 @@ public class FlappyBird extends ApplicationAdapter {
     private float spaceEntrePipe;
     private float deltaTime;
     private float alturaEntrePipe;
-//...
+
+    //...
     public void create() {
 
         batch = new SpriteBatch();
@@ -56,26 +58,35 @@ public class FlappyBird extends ApplicationAdapter {
         deltaTime = Gdx.graphics.getDeltaTime();
 
         verify += Gdx.graphics.getDeltaTime() * 10;
-        positionMovePipeHorizontal -= deltaTime * 200;
-        veloityDown++;
-
 
         if (verify > 2) verify = 0;
 
-        if (Gdx.input.justTouched()) {
+        if (statsGame == 0) { //Não iniciado
+            if (Gdx.input.justTouched()) {
+                statsGame = 1;
+            }
 
-            veloityDown = -15;
+        } else {
 
+            positionMovePipeHorizontal -= deltaTime * 200;
+            veloityDown++;
+
+
+            if (Gdx.input.justTouched()) {
+
+                veloityDown = -15;
+
+            }
+
+            // Verifica se o pipe saiu completamente.
+            if (positionMovePipeHorizontal < -pipeTop.getWidth()) {
+                positionMovePipeHorizontal = larguraDevice;
+                alturaEntrePipe = numerosAleatorios.nextInt(400) - 200;
+            }
+
+            if (positionStartVertical > 100 || veloityDown < 0)
+                positionStartVertical = positionStartVertical - veloityDown;
         }
-
-        // Verifica se o pipe saiu completamente.
-        if (positionMovePipeHorizontal < -pipeTop.getWidth()) {
-            positionMovePipeHorizontal = larguraDevice;
-            alturaEntrePipe = numerosAleatorios.nextInt(400) - 200;
-        }
-
-        if (positionStartVertical > 100 || veloityDown < 0)
-            positionStartVertical = positionStartVertical - veloityDown;
 
         batch.begin();
 
@@ -83,7 +94,7 @@ public class FlappyBird extends ApplicationAdapter {
         batch.draw(pipeTop, positionMovePipeHorizontal, alturaDevice / 2 + spaceEntrePipe / 2 + alturaEntrePipe);
         batch.draw(pipeBottom, positionMovePipeHorizontal, alturaDevice / 2 - pipeBottom.getHeight() - spaceEntrePipe / 2 - alturaEntrePipe);
 
-            //Posição inicial do passaro
+        //Posição inicial do passaro
         batch.draw(birds[(int) verify], 300, positionStartVertical);
 
 
