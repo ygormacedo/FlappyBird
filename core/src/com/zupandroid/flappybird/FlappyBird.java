@@ -170,7 +170,7 @@ public class FlappyBird extends ApplicationAdapter {
 //        shape.end();
 
         if (Intersector.overlaps(birdCiclo, retanguloPipeBottom) || Intersector.overlaps(birdCiclo, retanguloPipeTop)
-                || positionStartVertical <= 0 || positionStartVertical >= alturaDevice) {
+                || positionStartVertical <= 100 || positionStartVertical >= alturaDevice) {
             statsGame = 2;
         }
     }
