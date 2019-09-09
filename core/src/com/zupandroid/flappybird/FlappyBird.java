@@ -82,7 +82,9 @@ public class FlappyBird extends ApplicationAdapter {
         batch.draw(fundo, 0, 0, larguraDevice, alturaDevice);
         batch.draw(pipeTop, positionMovePipeHorizontal, alturaDevice / 2 + spaceEntrePipe / 2 + alturaEntrePipe);
         batch.draw(pipeBottom, positionMovePipeHorizontal, alturaDevice / 2 - pipeBottom.getHeight() - spaceEntrePipe / 2 - alturaEntrePipe);
-        batch.draw(birds[(int) verify], 100, positionStartVertical);
+
+            //Posição inicial do passaro
+        batch.draw(birds[(int) verify], 300, positionStartVertical);
 
 
 //        if (positionMovePipeHorizontal )
